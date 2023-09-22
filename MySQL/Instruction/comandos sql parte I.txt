@@ -1,0 +1,53 @@
+--- INICIAR XAMPP ---
+C:\xampp\xampp_start.exe
+C:\xampp\mysql\bin
+
+--- DETENER XAMPP ---
+\xampp\xampp_stop.exe
+
+--- CONECTAR A LA BASE DE DATOS ---
+mysql -u root -p
+
+--- LISTAR BASES DE DATOS ---
+SHOW DATABASES;
+
+--- USAR Y EDITAR TABLA ---
+USE aprendiendo_mysql
+
+--- CREAR TABLA ---
+CREATE TABLE clientes (id INT PRIMARY KEY NOT NULL, nombre VARCHAR(40) NOT NULL, edad INT NOT NULL, telefono BIGINT NOT NULL);
+
+--- LISTAR CONTENIDO DE LA TABLA ---
+DESCRIBE clientes;
+
+--- LISTAR TABLA ---
+SHOW TABLES;
+
+--- ELIMINAR TABLA MENCIONADA ---
+DROP TABLE clientes;
+
+--- VERIFICAR SI EXISTE Y LO ELIMINA ---
+DROP TABLE IF EXISTS clientes;
+
+--- INSERTAR FILA DE DATOS ---
+INSERT INTO clientes (id, nombre, apellido, edad, telefono) VALUES (NULL, "Federico", "Guzman", 28, 73983790874);
+
+INSERT INTO clientes VALUES (NULL, "Federico", "Guzman", 28, 73983790874);
+
+----- SI EL ID ES AUTOINCREMENTABLE -----
+INSERT INTO clientes VALUES (NULL);
+
+--- SELECCIONAR TABLA Y LISTAR DATOS
+SELECT * FROM clientes;
+
+--- BUSCAR DATOS POR ID ---
+ SELECT * FROM clientes WHERE id = 3;
+
+--- MOSTRAR DATOS ESPECIFICOS SEGUN EL TELEFONO ---
+SELECT nombre, edad FROM clientes WHERE telefono = 6677657;
+
+--- TRAER ALGO QUE SEA DIFERENTE, MAYOR, MENOR O IGUAL A LA EDAD DESCRITA ---
+SELECT * FROM clientes WHERE edad <> 28;
+SELECT * FROM clientes WHERE edad > 28;
+SELECT * FROM clientes WHERE edad < 28;
+SELECT * FROM clientes WHERE edad = 28;

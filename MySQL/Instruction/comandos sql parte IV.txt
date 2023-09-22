@@ -1,0 +1,32 @@
+--- HACER MULTITABLAS SIN NECESIDAD DE LLAVES FORANEAS ---
+SELECT comidas.*, postres.* FROM comidas CROSS JOIN postres;
+
+--- NATURAL JOIN SIN LLAVES FORANEAS, NO TENER LOS MISMOS NOMBRES EN LAS DOS TABLAS---
+SELECT nombre, precio FROM comidas AS C NATURAL JOIN postres AS P;
+
+--- BUSCAR COINCIDENCIAS ---
+SELECT nombre, precio FROM comidas AS com INNER JOIN postres AS pos ON com.codigo = pos.codigo;
+
+--- MULTITABLA PARA MOSTRAR NOMBRES ORIGINALES DE CODIGOS ---
+SELECT libros.titulo, libros.autor, editorial.nombre,
+libros.precio FROM libros JOIN editorial WHERE editorial.codigoEditorial = libro
+s.codigoEditorial;
+
+--- SABER SI UN INDICE ESTA OCUPADA ---
+SELECT editorial.nombre, IF(COUNT(libros.codigoEditorial) > 0, 'Si', 'No') AS Opcion FROM editorial LEFT JOIN libros ON editorial.codigoEditorial = libros.codigoEditorial GROUP BY editorial.nombre;
+
+SELECT editorial.nombre, CASE COUNT(libros.codigoEditorial) WHEN 0 THEN 'No' ELSE 'Si' END AS 'Hay Libros' FROM editorial LEFT JOIN libros ON editorial.codigoEditorial = libros.codigoEditorial GROUP BY editorial.nombre;
+
+
+--- CREAR TABLAS A PARTIR DE OTRAS TABLAS ---
+CREATE TABLE CANTIDAD_POR_EDITORIAL SELECT EDITORIAL.NOMBRE, COUNT(*) AS CANTIDAD FROM LIBROS JOIN EDITORIAL ON LIBROS.CODIGOEDITORIAL = EDITORIAL.CODIGOEDITORIAL GROUP BY EDITORIAL.NOMBRE;
+
+--- INSERCION DE DATOS A UNA TABLA A PARTIR DE OTRAS ---
+ INSERT INTO LIBROS SELECT 12, 'Harry Potter', 'J.K Rowling', CODIGOEDITORIAL, 53, 12 FROM EDITORIAL WHERE NOMBRE = "Editorial 1";
+
+--- REVISAR ERRORES EN UNA TABLA ---
+CHECH TABLE libros;
+
+--- ENCRIPTAR Y DESENCRIPTAR UN DATO ---
+SELECT ENCODE ('FELIZ', 'DIA');
+SELECT DECODE ('§ö¢H¹', 'DIA');

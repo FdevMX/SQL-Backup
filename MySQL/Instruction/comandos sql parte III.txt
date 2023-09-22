@@ -1,0 +1,37 @@
+--- CONTAR ALGO SEGUN EL DATO ESTABLECIDO ---
+SELECT COUNT(titulo) FROM libros WHERE autor = "Desconocido";
+SELECT COUNT(*) FROM libros WHERE autor = "Desconocido";
+
+--- TRAE LOS VALORES UNA VEZ, SIN MOSTRAR REPETICIONES ---
+ SELECT DISTINCT autor FROM libros
+
+--- MOSTRAR INDICES ---
+SHOW index FROM indices_1;
+
+--- CREAR TABLAS CON INDICES UNICOS ---
+CREATE TABLE indices_2 (codigo INT UNSIGNED AUTO_INCREMENT, titulo VARCHAR(40) NOT NULL, autor VARCHAR(30), editorial VARCHAR(15), UNIQUE i_codigo(codigo), UNIQUE i_tituloeditorial(titulo, editorial));
+
+
+--- BORRAR LOS INDICES DE UNA TABLA ---
+DROP INDEX i_tituloeditorial ON indices_2;
+
+--- TRAER CANTIDAD ESPECIFICA DE DATOS ---
+SELECT * FROM indices_2 LIMIT 5;
+SELECT * FROM indices_2 LIMIT 5, 2;
+
+--- ALTERAR TABLAS ---
+ALTER TABLE indices_2 ADD precio DECIMAL(5,2) UNSIGNED AFTER autor;
+
+ALTER TABLE indices_2 ALTER autor SET DEFAULT 'Desconocido';
+
+ALTER TABLE indices_2 ALTER autor DROP DEFAULT;
+
+ALTER TABLE indices_2 RENAME indices_3;
+
+-------- ENUM & SET --------
+ENUM = SOLO PERMITE ELEGIR UN SOLO VALOR
+SET = PERMITE ELEGIR VARIOS VALORES
+
+estudios ENUM('ninguno','primar','secun','terci','universi');
+idioma SET('ingles', 'italiano', 'ruso');
+
