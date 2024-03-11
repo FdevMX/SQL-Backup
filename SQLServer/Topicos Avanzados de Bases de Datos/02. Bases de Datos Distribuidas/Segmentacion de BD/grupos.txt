@@ -1,0 +1,18 @@
+GrpCatalogos
+01	tc_vendedor
+02	tcg_proveedor
+03	tc_proveedor
+04	tcg_articulo
+05	tc_articulos
+06	tcg_rutas
+07	tcg_cliente
+08	tc_cliente
+09	tc_almacen
+
+GrpCompras
+10	tm_compras
+11	tm_comprasdetalles
+
+GrpVentas
+12	tm_remision
+13	tm_remisiondetalles
